@@ -11,6 +11,7 @@ namespace Lab2Project
         static void Main(string[] args)
         {
             Console.WriteLine("Yo, What's up?");
+            Console.WriteLine("Not much. Whudboutchu?");
         }
     }
 }
