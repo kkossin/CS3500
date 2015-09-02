@@ -12,6 +12,7 @@ namespace Lab2Project
         {
             Console.WriteLine("Yo, What's up?");
             Console.WriteLine("Not much. Whudboutchu?");
+            Console.WriteLine("Here's the change for the master");
         }
     }
 }
