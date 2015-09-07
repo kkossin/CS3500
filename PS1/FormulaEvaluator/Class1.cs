@@ -20,6 +20,12 @@ namespace FormulaEvaluator
         /// <returns></returns>
         public delegate int Lookup(String v);
 
+        public static int variablevalue(String v)
+        {
+            int value = 0;
+            return value;
+        }
+
         public static int Evaluate(String exp, Lookup va)
         /// <summary>
         /// Takes in an expression in the form of an expression; returns answer as integer
@@ -68,7 +74,7 @@ namespace FormulaEvaluator
 
                 else if (substrings[i].Any(x => char.IsLetter(x))) //Checks for letter(variable)
                 {
-                    
+
                 }
 
                 else if (substrings[i].Equals("+") || substrings[i].Equals("-")) //Checks for addition/subtraction
@@ -194,4 +200,3 @@ namespace FormulaEvaluator
         }
     }
 }
-
