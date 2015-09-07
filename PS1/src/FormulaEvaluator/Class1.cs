@@ -30,7 +30,8 @@ namespace FormulaEvaluator
                 if (Int32.TryParse(substrings[i], out number)) //Checks for integer
                 {
                     Convert.ToDouble(number);
-                    if (substrings[i].Equals("*") || substrings[i].Equals("/")){
+                    if (substrings[i].Equals("*") || substrings[i].Equals("/"))
+                    {
                         if (operators.Peek() == "*")
                         {
                             string now = operators.Pop();
@@ -52,6 +53,11 @@ namespace FormulaEvaluator
                         values.Push(number);
                         vsize++;
                     }
+                }
+
+                else if (substrings[i].Any(x => char.IsLetter(x))) //Checks for letter(variable)
+                {
+                    
                 }
 
                 else if (substrings[i].Equals("+") || substrings[i].Equals("-")) //Checks for addition/subtraction
@@ -135,10 +141,15 @@ namespace FormulaEvaluator
                                 values.Push(first / second);
                             }
                         }
-
+                    }
+                    else if (operators.Peek() == " ")
+                    {
+                    }
+                    else
+                    {
+                        throw new System.ArgumentException("Expression contains invalid character");
                     }
                 }
-
             }
 
 
@@ -149,7 +160,8 @@ namespace FormulaEvaluator
                     int answer = Convert.ToInt32(values.Pop());
                     return answer;
                 }
-                else return 0; //placeholder - What should I do here?
+                else
+                    throw new System.ArgumentException("Operators/values don't add up");
             }
             else if (osize == 1 && vsize == 2) ; //will carry out final operation if one operator remains
             {
@@ -166,7 +178,7 @@ namespace FormulaEvaluator
                     int answer = Convert.ToInt32(first - second);
                     return answer;
                 }
-                else return 0; //placeholder - What should I do here?
+                else throw new System.ArgumentException("Operators/values don't add up");
             }
         }
     }
