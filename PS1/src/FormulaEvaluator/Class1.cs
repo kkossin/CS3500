@@ -13,10 +13,21 @@ namespace FormulaEvaluator
     // carries out the calculations, and returns the answer
     public static class Evaluator
     {
+        /// <summary>
+        /// Evaluates an expression containing integers/operators/variables
+        /// </summary>
+        /// <param name="v"></param>
+        /// <returns></returns>
         public delegate int Lookup(String v);
 
         public static int Evaluate(String exp, Lookup va)
+        /// <summary>
+        /// Takes in an expression in the form of an expression; returns answer as integer
+        /// </summary>
+        /// <param name="v"></param>
+        /// <returns></returns>
         {
+
             string[] substrings = Regex.Split(exp, "(\\()|(\\))|(-)|(\\+)|(\\*)|(/)");
             Stack<double> values = new Stack<double>();
             Stack<string> operators = new Stack<string>();
