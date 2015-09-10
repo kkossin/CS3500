@@ -32,7 +32,7 @@ namespace ConsoleApplication1
             string test2 = "3 - 3";
             string test3 = "3 * 3";
             string test4 = "3 / 3";
-            Console.WriteLine(FormulaEvaluator.Evaluator.Evaluate("K", variableEvaluator));
+            Console.WriteLine(FormulaEvaluator.Evaluator.Evaluate(test1, variableEvaluator));
         }
     }
 }
