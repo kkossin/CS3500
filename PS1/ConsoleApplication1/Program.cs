@@ -10,7 +10,7 @@ namespace ConsoleApplication1
     {
         static int Main(string[] args)
         {
-            string test1 = "3 * (3 + 3)";
+            string test1 = "3 / (3 - 3)";
             string test2 = "3 - 3";
             string test3 = "3 * 3";
             string test4 = "3 / 3";

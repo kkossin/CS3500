@@ -34,7 +34,7 @@ namespace FormulaEvaluator
         /// <param name="v"></param>
         /// <returns></returns>
         {
-
+            exp = exp.Replace(" ", "");
             string[] substrings = Regex.Split(exp, "(\\()|(\\))|(-)|(\\+)|(\\*)|(/)");
             Stack<double> values = new Stack<double>();
             Stack<string> operators = new Stack<string>();
@@ -43,6 +43,7 @@ namespace FormulaEvaluator
             int number = 0;
             for (i = 0; i < ssize; i++)
             {
+                string check = substrings[i];
                 if (Int32.TryParse(substrings[i], out number)) //Checks for integer
                 {
                     Convert.ToDouble(number);
@@ -90,7 +91,7 @@ namespace FormulaEvaluator
                             double first = values.Pop();
                             values.Push(first + second);
                         }
-                        else
+                        else if (operators.Peek() == "-")
                         {
                             string now = operators.Pop();
                             double second = values.Pop();
@@ -126,34 +127,33 @@ namespace FormulaEvaluator
                             double first = values.Pop();
                             values.Push(first - second);
                         }
-
-                        if (operators.Peek() == "(")
-                        {
-                            operators.Pop();
-                        }
-
-                        if (operators.Peek() == "*" || operators.Peek() == "/")
-                        {
-                            if (operators.Peek() == "*")
-                            {
-                                string now = operators.Pop();
-                                double second = values.Pop();
-                                double first = values.Pop();
-                                values.Push(first * second);
-                            }
-                            else
-                            {
-                                string now = operators.Pop();
-                                double second = values.Pop();
-                                double first = values.Pop();
-                                values.Push(first / second);
-                            }
-                        }
                     }
 
-                    else if (operators.Peek() == " ")
+                    if (operators.Peek() == "(")
                     {
+                        operators.Pop();
                     }
+
+                   if (operators.Peek() == "*" || operators.Peek() == "/")
+                    {
+                        if (operators.Peek() == "*")
+                        {
+                            string now = operators.Pop();
+                            double second = values.Pop();
+                            double first = values.Pop();
+                            values.Push(first * second);
+                        }
+                        else
+                        {
+                            string now = operators.Pop();
+                            double second = values.Pop();
+                            if (second == 0) { throw new ArgumentException("Division by zero encountered"); }
+                            double first = values.Pop();
+                            values.Push(first / second);
+                        }
+
+                    }
+
                     else
                     {
                         throw new System.ArgumentException("Expression contains invalid character");
