@@ -13,25 +13,18 @@ namespace ConsoleApplication1
         {
             var variables = new Dictionary<string, int>
             {
-                { "X6", 7 }, { "K", 6 }
+                { "X17", 7 }, { "K", 3 }
             };
-            return 0;
 
             if (variables.ContainsKey(v))
             {
                 return variables[v];
             }
-            else throw new ArgumentException("This variable has no value");
+            else throw new ArgumentException("A variable has no value");
         }
         static void Main(string[] args)
         {
-            Regex r = new Regex("[abc]*");
-            r.IsMatch("a");
-
-            string test1 = "3 * (3 + 3)";
-            string test2 = "3 - 3";
-            string test3 = "3 * 3";
-            string test4 = "3 / 3";
+            string test1 = "X17 + 3 * (3 - (3 / 3))";
             Console.WriteLine(FormulaEvaluator.Evaluator.Evaluate(test1, variableEvaluator));
         }
     }
