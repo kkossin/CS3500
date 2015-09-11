@@ -21,12 +21,6 @@ namespace FormulaEvaluator
         /// <returns></returns>
         public delegate int Lookup(String v);
 
-        public static int variableEvaluator(String v)
-        {
-            Hashtable variables = new Hashtable();
-            return 0;
-        }
-
         public static int Evaluate(String exp, Lookup variableEvaluator)
         /// <summary>
         /// Takes in an expression in the form of an expression; returns answer as integer

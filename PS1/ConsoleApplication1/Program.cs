@@ -3,20 +3,36 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace ConsoleApplication1
 {
     class Program
     {
-        static int Main(string[] args)
+        private static int variableEvaluator(String v)
         {
-            string test1 = "3 / (3 - 3)";
+            var variables = new Dictionary<string, int>
+            {
+                { "X6", 7 }, { "K", 6 }
+            };
+            return 0;
+
+            if (variables.ContainsKey(v))
+            {
+                return variables[v];
+            }
+            else throw new ArgumentException("This variable has no value");
+        }
+        static void Main(string[] args)
+        {
+            Regex r = new Regex("[abc]*");
+            r.IsMatch("a");
+
+            string test1 = "3 * (3 + 3)";
             string test2 = "3 - 3";
             string test3 = "3 * 3";
             string test4 = "3 / 3";
-            int answer = FormulaEvaluator.Evaluator.Evaluate(test1, FormulaEvaluator.Evaluator.variableEvaluator);
-            System.Diagnostics.Debug.Write(answer);
-            return answer;
+            Console.WriteLine(FormulaEvaluator.Evaluator.Evaluate(test1, variableEvaluator));
         }
     }
 }
